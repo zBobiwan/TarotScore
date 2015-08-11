@@ -22,10 +22,11 @@ public class Prise : MonoBehaviour
         Reset();
     }
 
-    void Reset()
+    public void Reset()
     {
         priseType = PriseType.Defense;
         GetComponentInChildren<Text>().text = priseType.ToString().Replace('_', ' ');
+        GetComponent<Image>().color = Color.white;
     }
 
     public void Click()
@@ -33,5 +34,6 @@ public class Prise : MonoBehaviour
         priseType = (PriseType)(((int)priseType + 1) % Enum.GetNames(typeof(PriseType)).Length);
         GetComponentInChildren<Text>().text = priseType.ToString().Replace('_', ' ');
         ScoreObject.Recalculate();
+        GetComponent<Image>().color = priseType == PriseType.Defense ? Color.white : priseType == PriseType.Partenaire ? Color.yellow : Color.red;
     }
 }
