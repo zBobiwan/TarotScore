@@ -3,17 +3,15 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 
-public class Annonce : MonoBehaviour {
+public class Petit : MonoBehaviour {
 
-    public enum AnnonceType
+    public enum PetitType
     {
-        Aucune_annonce,
-        Poignée,
-        Double_poignée,
-        Triple_poignée,
+        Pas_de_petit,
+        Petit_au_bout,
     }
     public Score ScoreObject;
-    public AnnonceType annonce = AnnonceType.Aucune_annonce;
+    public PetitType annonce = PetitType.Pas_de_petit;
     // Use this for initialization
     void Start()
     {
@@ -22,13 +20,13 @@ public class Annonce : MonoBehaviour {
 
     void Reset()
     {
-        annonce = AnnonceType.Aucune_annonce;
+        annonce = PetitType.Pas_de_petit;
         GetComponentInChildren<Text>().text = annonce.ToString().Replace('_', ' ');
     }
 
     public void Click()
     {
-        annonce = (AnnonceType)(((int)annonce + 1) % Enum.GetNames(typeof(AnnonceType)).Length);
+        annonce = (PetitType)(((int)annonce + 1) % Enum.GetNames(typeof(PetitType)).Length);
         GetComponentInChildren<Text>().text = annonce.ToString().Replace('_', ' ');
         ScoreObject.Recalculate();
     }

@@ -17,19 +17,21 @@ public class Prise : MonoBehaviour
     public Score ScoreObject;
     public PriseType priseType = PriseType.Defense;
 	// Use this for initialization
-	void Start () 
+    void Start()
     {
+        Reset();
+    }
+
+    void Reset()
+    {
+        priseType = PriseType.Defense;
         GetComponentInChildren<Text>().text = priseType.ToString().Replace('_', ' ');
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    }
 
     public void Click()
     {
         priseType = (PriseType)(((int)priseType + 1) % Enum.GetNames(typeof(PriseType)).Length);
-        GetComponentInChildren<Text>().text = priseType.ToString();
+        GetComponentInChildren<Text>().text = priseType.ToString().Replace('_', ' ');
+        ScoreObject.Recalculate();
     }
 }

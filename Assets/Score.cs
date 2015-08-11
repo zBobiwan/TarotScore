@@ -10,14 +10,22 @@ public class Score : MonoBehaviour {
     public InputField Oudler;
     public InputField Points;
     public List<Prise> Prises;
+    public List<Annonce> Annonces;
+    public List<Petit> Petits;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+    {
+        foreach (Prise p in Prises)
+            p.ScoreObject = this;
+        foreach (Annonce p in Annonces)
+            p.ScoreObject = this;
+        foreach (Petit p in Petits)
+            p.ScoreObject = this;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public void Recalculate()
+    {
+
+    }
 }
